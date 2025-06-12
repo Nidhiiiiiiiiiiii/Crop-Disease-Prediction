@@ -78,7 +78,6 @@ import random
 sample_class = random.choice(classes)
 sample_class_path = os.path.join(color_dir, sample_class)
 
-# List images
 image_files = os.listdir(sample_class_path)
 print(f"Number of images in class '{sample_class}': {len(image_files)}")
 print("First 5 images:", image_files[:5])
@@ -135,19 +134,15 @@ history=model.fit(
 import numpy as np
 from tensorflow.keras.preprocessing import image
 
-# Path to your test image
 img_path = '/content/Screenshot 2025-05-19 223833.png'
 
-# Load and preprocess image
 img = image.load_img(img_path, target_size=(224, 224))
 img_array = image.img_to_array(img) / 255.0
-img_array = np.expand_dims(img_array, axis=0)  # shape: (1, 224, 224, 3)
+img_array = np.expand_dims(img_array, axis=0) 
 
-# Make prediction
 pred = model.predict(img_array)
 predicted_class = np.argmax(pred)
 
-# Get class name from train_gen
 class_names = list(train_gen.class_indices.keys())
 predicted_class_name = class_names[predicted_class]
 
